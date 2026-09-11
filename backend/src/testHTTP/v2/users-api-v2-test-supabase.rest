@@ -6,28 +6,34 @@
 #
 # @id = paste-a-real-uuid-here
 
+@baseUrl = http://localhost:3001/api/v2/users/pg
+@id = 59a42c33-e283-41bc-ad38-2a67a581f2ba
+
 ### Read all users (Supabase)
-GET http://localhost:3001/api/v2/users/pg
+GET {{baseUrl}}
 
 ### Create a new user (Supabase)
-POST http://localhost:3001/api/v2/users/pg
+POST {{baseUrl}}
 Content-Type: application/json
 
 {
-    "username": "Alice",
+    "username": "A",
     "role": "admin",
-    "email": "alice2@example.com",
+    "email": "A@example.com",
     "password": "password123"
 }
 
-### Update a user (Supabase) — replace the UUID with a real id from POST response
-PUT http://localhost:3001/api/v2/users/pg/9274afc7-817a-4981-bc89-ae429d556fd1
+### Update a user (Supabase)
+# หมายเหตุ: ต้องใส่ email และ password ให้ครบตามที่ Backend ตรวจสอบ
+PUT {{baseUrl}}/{{id}}
 Content-Type: application/json
 
 {
-    "username": "Alice",
-    "role": "user"
+    "username": "A Updated",
+    "email": "a_updated@example.com",
+    "password": "newpassword123"
 }
 
-### Delete a user (Supabase) — replace the UUID with a real id from POST response
-DELETE http://localhost:3001/api/v2/users/pg/5a37de72-f3e8-4b27-af7c-71e583392e22
+
+### Delete a user (Supabase)
+DELETE {{baseUrl}}/{{id}}
